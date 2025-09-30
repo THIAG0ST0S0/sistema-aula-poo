@@ -1,7 +1,15 @@
-from templates.manterclienteUI import ManterClienteUI
-from templates.manterservicoUI import ManterServicoUI
-from templates.manterhorarioUI import ManterHorarioUI
+from templates.manterclienteUI 
+import ManterClienteUI
+from templates.manterservicoUI 
+import ManterServicoUI
+from templates.manterhorarioUI 
+import ManterHorarioUI
 import streamlit as st
+from templates.manterclienteUI 
+import manterClienteUI
+from templates.manterprofissionalUI 
+import manterprofissionalUI
+
 
 class IndexUI:
     def menu_admin():
@@ -15,5 +23,8 @@ class IndexUI:
 
     def main():
         IndexUI.sidebar()
+        manterClienteUI.main()
+        manterprofissionalUI.main()
+
 
 IndexUI.main()
