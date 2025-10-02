@@ -1,19 +1,18 @@
 import streamlit as st
 import pandas as pd
 import time
-from views 
-import View
+from view import View
 
-class manterprofissionalUI:
+class ManterprofissionalUI:
 
     def main():
         st.header("Cadastro de profissionais")
         tab1, tab2, tab3, tab4 = st.tabs(["Listar", "Inserir","Atualizar", "Excluir"])
 
-        with tab1: manterprofissionalUI.listar()
-        with tab2: manterprofissionalUI.inserir()
-        with tab3: manterprofissionalUI.atualizar()
-        with tab4: manterprofissionalUI.excluir()
+        with tab1: ManterprofissionalUI.listar()
+        with tab2: ManterprofissionalUI.inserir()
+        with tab3: ManterprofissionalUI.atualizar()
+        with tab4: ManterprofissionalUI.excluir()
 
     def listar():
         profissionais = View.profissional_listar()
