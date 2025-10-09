@@ -1,6 +1,6 @@
 import json
 
-class clienteDAO():
+class ClienteDAO():
     __objetos = []
     @classmethod
     def inserir(cls, obj):

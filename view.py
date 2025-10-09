@@ -1,7 +1,6 @@
-from models.horario 
-import Horario, HorarioDAO
-from models.cliente 
-import Cliente, ClienteDAO
+from horario import Horario
+from horarioDAO import HorarioDAO
+from cliente import Cliente
 
 class View:
     def horario_inserir(data, confirmado, id_cliente, id_servico):
@@ -29,7 +28,7 @@ class View:
         return clienteDAO.listar()
 
     def cliente_listar_id(id):
-        return clienteDAO.listar_id(id)
+        return ClienteDAO.listar_id(id)
         
     def cliente_inserir(nome, email, fone):
         cliente = cliente(0, nome, email, fone)

@@ -1,4 +1,4 @@
-class profissional():
+class Profissional():
 
     def __init__(self, nome, id, especialidade, conselho):
         self.set_nome(nome)
@@ -33,4 +33,4 @@ class profissional():
 
     @staticmethod
     def from_json(dic):
-        return profissional(dic["nome"], dic['id'], dic['especialidade'], dic['conselho'])                           
+        return Profissional(dic["nome"], dic['id'], dic['especialidade'], dic['conselho'])                           

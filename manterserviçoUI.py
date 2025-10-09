@@ -1,101 +1,57 @@
+import streamlit as st
+import pandas as pd
+import time
+from view import View
+
 class ManterServicoUI:
-    def __init__(self, servico_dao):
-        self.servico_dao = servico_dao
 
-    def menu_principal(self):
-        while True:
-            print("\n--- Manter Cadastro de Serviços ---")
-            print("1. Incluir Serviço")
-            print("2. Listar Serviços")
-            print("3. Alterar Serviço")
-            print("4. Excluir Serviço")
-            print("5. Voltar ao Menu Principal")
-            
-            opcao = input("Escolha uma opção: ")
-            
-            if opcao == '1':
-                self._incluir_servico()
-            elif opcao == '2':
-                self._listar_servicos()
-            elif opcao == '3':
-                self._alterar_servico()
-            elif opcao == '4':
-                self._excluir_servico()
-            elif opcao == '5':
-                break
-            else:
-                print("Opção inválida. Tente novamente.")
+    def main():
+        st.header("Cadastro de Clientes")
+        tab1, tab2, tab3, tab4 = st.tabs(["Listar", "Inserir","Atualizar", "Excluir"])
 
-    def _incluir_servico(self):
-        print("\n--- Incluir Novo Serviço ---")
-        try:
-            descricao = input("Descrição do Serviço: ")
-            valor = float(input("Valor do Serviço (Ex: 150.50): "))
-            novo_servico = Servico(id=0, descricao=descricao, valor=valor)
-            self.servico_dao.insert(novo_servico)
-            
-            print(f"\n Serviço incluído com sucesso! ID: {novo_servico.id}")
-        except ValueError as e:
-            print(f" Erro na entrada de dados: {e}")
+        with tab1: ManterServicoUI.listar()
+        with tab2: ManterServicoUI.inserir()
+        with tab3: ManterServicoUI.atualizar()
+        with tab4: ManterServicoUI.excluir()
 
-    def _listar_servicos(self):
-        servicos = self.servico_dao.select_all()
-        if not servicos:
-            print("\nNenhum serviço cadastrado.")
-            return
+    def listar():
+        serviços = View.serviço_listar()
+        if len(serviços) == 0: st.write("Nenhum cliente cadastrado")
+        else:
+            list_dic = []
+            for obj in serviços: list_dic.append(obj.to_json())
+            df = pd.DataFrame(list_dic)
+            st.dataframe(df) 
 
-        print("\n--- Lista de Serviços ---")
-        for servico in servicos:
-            print(servico)
+    def inserir():
+        id = st.text_input("Informe o id")
+        descriçao = st.text_input("adicione uma descrição")
+        valor = st.text_input("Informe o valor")
+        if st.button("Inserir"):
+            View.serviço_inserir(id, descriçao, valor)
+            st.success("Serviço inserido com sucesso")
+            time.sleep(2)
+            st.rerun()  
 
-    def _alterar_servico(self):
-        self._listar_servicos()
-        if not self.servico_dao.select_all():
-            return
-            
-        try:
-            servico_id = int(input("\nDigite o ID do serviço para alterar: "))
-            servico = self.servico_dao.select_by_id(servico_id)
-            
-            if servico:
-                print(f"Serviço atual: {servico}")
-                nova_descricao = input(f"Nova descrição (atual: {servico.descricao}, deixe vazio para manter): ")
-                novo_valor_str = input(f"Novo valor (atual: {servico.valor}, deixe vazio para manter): ")
-                
-                if nova_descricao:
-                    servico.descricao = nova_descricao
-                
-                if novo_valor_str:
-                    servico.valor = float(novo_valor_str)
-                    
-                self.servico_dao.update(servico)
-                print(f" Serviço {servico_id} alterado com sucesso.")
-            else:
-                print(f" Serviço com ID {servico_id} não encontrado.")
-        except ValueError as e:
-            print(f" Erro: Entrada inválida ou {e}")
+    def atualizar():
+        serviços = View.serviço_listar()
+        if len(serviços) == 0: st.write("Nenhum cliente cadastrado")
+        else:
+            op = st.selectbox ("Atualização de Serviços")
+            id = st.text_input("id do serviço", op.get_nome())
+            descriçao = st.text_input("descrição", op.get_email())
+            valor = st.text_input("valor do serviço", op.get_fone())
+            if st.button("Atualizar"):
+                id = op.get_id()
+                View.serviço_atualizar(id, descriçao, valor)
+                st.success("Serviço atualizado com sucesso")
 
-    def _excluir_servico(self):
-        self._listar_servicos()
-        if not self.servico_dao.select_all():
-            return
-            
-        try:
-            servico_id = int(input("\nDigite o ID do serviço para excluir: "))
-            
-            if self.servico_dao.delete(servico_id):
-                print(f" Serviço {servico_id} excluído com sucesso.")
-            else:
-                print(f" Serviço com ID {servico_id} não encontrado.")
-        except ValueError:
-            print(" Erro: ID inválido.")
-
-
-
-if __name__ == '__main__':
-    servico_dao = ServicoDAO()
-    manter_servico_ui = ManterServicoUI(servico_dao)
-    
-    print("--- Inicializando o Sistema de Agendamento ---")
-    manter_servico_ui.menu_principal() 
-    print("--- Fim da Simulação ---")
+    def excluir():
+        serviços = View.serviço_listar()
+        if len(serviços) == 0: st.write("Nenhum serviço cadastrado")
+        else:
+            op = st.selectbox("Exclusão de Serviço", serviços)
+            if st.button("Excluir"):
+                id = op.get_id()
+                View.serviço_excluir(id)
+                st.success("Serviço excluído com sucesso")

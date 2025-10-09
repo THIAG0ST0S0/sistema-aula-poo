@@ -1,9 +1,9 @@
-from templates.ManterclienteUI import ManterClienteUI
-from templates.ManterservicoUI import ManterServicoUI
-from templates.ManterhorarioUI import ManterHorarioUI
+from manterclienteUI import ManterClienteUI
+from manterserviçoUI import ManterServicoUI
+from manterhorarioUI import ManterHorarioUI
 import streamlit as st 
-from templates.ManterclienteUI import ManterClienteUI
-from templates.ManterprofissionalUI import ManterprofissionalUI
+from manterclienteUI import ManterClienteUI
+from manterprofissionalUI import ManterprofissionalUI
 
 
 class IndexUI:
