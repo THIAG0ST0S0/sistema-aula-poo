@@ -1,5 +1,5 @@
 import json
-from Horario import Horario
+from horario import Horario
 
 class HorarioDAO:
     __objetos = []
