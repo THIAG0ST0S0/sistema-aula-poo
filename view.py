@@ -60,4 +60,22 @@ class View:
 
     def profissional_excluir(id):
         cliente = cliente(id, "", "", "")
-        ClienteDAO.excluir(cliente)    
+        ClienteDAO.excluir(cliente)  
+
+  
+    @staticmethod
+    def autenticar_cliente(email, senha):
+        clientes = ClienteDAO.listar()
+        for c in clientes:
+            if c.get_email() == email and hasattr(c, "get_senha") and c.get_senha() == senha:
+                return c
+        return None
+
+    @staticmethod
+    def autenticar_profissional(email, senha):
+        profissionais = ProfissionalDAO.listar()
+        for p in profissionais:
+            if hasattr(p, "get_email") and p.get_email() == email and hasattr(p, "get_senha") and p.get_senha() == senha:
+                return p
+        return None
+
