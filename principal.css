@@ -1,0 +1,24 @@
+h1{
+    text-align: center;
+}
+
+body{
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+div{
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+
+}
+
+div.hover{
+   filter: grayscale(100%) brightness(1.1);
+    transform: scale(1.05) rotate(-3deg);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+
+}
