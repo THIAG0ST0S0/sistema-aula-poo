@@ -45,6 +45,11 @@ class ManterProfissionalUI:
           st.success("Profissional inserido com sucesso")
           time.sleep(2)
           st.rerun()
+      try:
+        View.profissional_inserir(...)
+        st.success("profissional criado com sucesso!")
+      except Exception as e:
+        st.error(str(e))
 
   def atualizar():
     profissionais = View.profissional_listar()

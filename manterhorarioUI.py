@@ -63,6 +63,11 @@ class ManterHorarioUI:
         st.error("Formato de data inválido. Use dd/mm/aaaa HH:MM")
       except Exception as e:
         st.error(f"Ocorreu um erro: {e}")
+      try:
+        View.cliente_inserir(...)
+        st.success("Cliente criado com sucesso!")
+      except Exception as e:
+        st.error(str(e))
 
 
   def atualizar():

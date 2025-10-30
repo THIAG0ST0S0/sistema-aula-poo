@@ -28,7 +28,9 @@ class Horario:
   def set_id(self, id):
     self._id = id
   def set_data(self, data):
-    self._data = data
+      if data.year < 2025:
+        raise Exception("Não é permitido cadastrar horários antes de 2025.")
+      self._data = data
   def set_confirmado(self, confirmado):
     self._confirmado = confirmado
   def set_id_cliente(self, id_cliente):

@@ -12,5 +12,19 @@
         "email": "vinisafadao@gmail.com",
         "fone": "010001029198471923",
         "senha": "1234"
+    },
+    {
+        "id": 3,
+        "nome": "zeca",
+        "email": "aa@gmail.com",
+        "fone": "11111111",
+        "senha": "1234"
+    },
+    {
+        "id": 4,
+        "nome": "juru",
+        "email": "admin@gmail.com",
+        "fone": "1111111",
+        "senha": "1234"
     }
 ]

@@ -25,13 +25,19 @@ class Cliente():
   def set_id(self, id):
     self.__id = id
   def set_nome(self, nome):
-    self.__nome = nome
+      if nome == "" or nome is None:
+        raise Exception("Cliente deve possuir um nome.")
+      self.__nome = nome
   def set_email(self, email):
-    self.__email = email
+     if email == "" or email is None:
+        raise Exception("Cliente deve possuir um e-mail.")
+     self.__email = email
   def set_fone(self, fone):
     self.__fone = fone
   def set_senha(self, senha):
-    self.__senha = senha
+      if senha == "" or senha is None:
+        raise Exception("cliente deve ter uma senha.")
+      self.__senha = senha
 
   def to_json(self):
     return {

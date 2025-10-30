@@ -42,6 +42,11 @@ class ManterClienteUI:
           st.success("Cliente inserido com sucesso")
           time.sleep(2)
           st.rerun()
+      try:
+          View.cliente_inserir(...)
+          st.success("cliente criado com sucesso!")
+      except Exception as e:
+          st.error(str(e))
 
   def atualizar():
     clientes = View.cliente_listar()

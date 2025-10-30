@@ -28,16 +28,21 @@ class Profissional():
   def set_id(self, id):
     self.__id = id
   def set_nome(self, nome):
+    if nome == "" or nome is None:
+        raise Exception("Profissional deve possuir um nome.")
     self.__nome = nome
   def set_especialidade(self, especialidade):
     self.__especialidade = especialidade
   def set_conselho(self, conselho):
     self.__conselho = conselho
   def set_email(self, email):
+    if email == "" or email is None:
+        raise Exception("Profissional deve possuir um e-mail.")
     self.__email = email
   def set_senha(self, senha):
+    if senha == "" or senha is None:
+        raise Exception("Profissional deve possuir uma senha.")
     self.__senha = senha
-
   def to_json(self):
     return {
       "id": self.__id,
