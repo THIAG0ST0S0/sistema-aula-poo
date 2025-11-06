@@ -1,13 +1,14 @@
 import json
 
 class Profissional():
-  def __init__(self, id, nome, especialidade, conselho, email, senha):
+  def __init__(self, id, nome, especialidade, conselho, email, senha, bio):
     self.set_id(id)
     self.set_nome(nome)
     self.set_especialidade(especialidade)
     self.set_conselho(conselho)
     self.set_email(email)
     self.set_senha(senha)
+    self.set_bio(bio)
 
   def __str__(self):
     return f"{self.__nome} - {self.__especialidade}"
@@ -24,6 +25,8 @@ class Profissional():
     return self.__email
   def get_senha(self):
     return self.__senha
+  def get_bio(self):
+    return self.__bio
 
   def set_id(self, id):
     self.__id = id
@@ -43,6 +46,8 @@ class Profissional():
     if senha == "" or senha is None:
         raise Exception("Profissional deve possuir uma senha.")
     self.__senha = senha
+  def set_bio(self, bio):
+    self.__bio = bio  
   def to_json(self):
     return {
       "id": self.__id,
@@ -50,9 +55,10 @@ class Profissional():
       "especialidade": self.__especialidade,
       "conselho": self.__conselho,
       "email": self.__email,
-      "senha": self.__senha
+      "senha": self.__senha,
+      "bio": self.__bio,
     }
 
   @staticmethod
   def from_json(dic):
-    return Profissional(dic["id"], dic["nome"], dic["especialidade"], dic["conselho"], dic["email"], dic["senha"])
+    return Profissional(dic["id"], dic["nome"], dic["especialidade"], dic["conselho"], dic["email"], dic["senha"], dic["bio"])

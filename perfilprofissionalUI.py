@@ -14,9 +14,12 @@ class PerfilProfissionalUI:
         conselho = st.text_input("Informe o novo conselho", op.get_conselho())
         email = st.text_input("Informe o novo e-mail", op.get_email())
         senha = st.text_input("Informe a nova senha", op.get_senha(), type="password")
+        bio = st.text_area("escreva aqui sua biografia", op.get_bio())
 
 
         if st.button("Atualizar"):
             id = op.get_id()
-            View.profissional_atualizar(id, nome, especialidade, conselho, email, senha)
-            st.success("Profissional atualizado com sucesso")
+            View.profissional_atualizar(id, nome, especialidade, conselho, email, senha, bio)
+            st.success("Profissional atualizado com sucesso"),
+            time.sleep(2)
+            st.rerun()

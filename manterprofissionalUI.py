@@ -25,7 +25,8 @@ class ManterProfissionalUI:
               "nome": obj.get_nome(),
               "especialidade": obj.get_especialidade(),
               "conselho": obj.get_conselho(),
-              "email": obj.get_email()
+              "email": obj.get_email(),
+              "bio": obj.get_bio(),
           })
       df = pd.DataFrame(list_dic)
       st.dataframe(df)
@@ -36,12 +37,13 @@ class ManterProfissionalUI:
     conselho = st.text_input("Informe o conselho")
     email = st.text_input("Informe o e-mail") 
     senha = st.text_input("Informe a senha", type="password") 
+    bio = st.text_input("escreva aqui sua biografia")
     
     if st.button("Inserir"):
       if not nome or not email or not senha:
           st.warning("Nome, e-mail e senha são obrigatórios.")
       else:
-          View.profissional_inserir(nome, especialidade, conselho, email, senha)
+          View.profissional_inserir(nome, especialidade, conselho, email, senha, bio)
           st.success("Profissional inserido com sucesso")
           time.sleep(2)
           st.rerun()
@@ -62,14 +64,15 @@ class ManterProfissionalUI:
       especialidade = st.text_input("Nova especialidade", op.get_especialidade()) 
       conselho = st.text_input("Novo conselho", op.get_conselho())
       email = st.text_input("Novo e-mail", op.get_email())
-      senha = st.text_input("Nova senha", op.get_senha(), type="password") 
+      senha = st.text_input("Nova senha", op.get_senha(), type="password")
+      bio = st.text_area("atualizar biografia", op.get_bio()) 
       
       if st.button("Atualizar"):
         if not nome or not email or not senha:
             st.warning("Nome, e-mail e senha são obrigatórios.")
         else:
             id = op.get_id()
-            View.profissional_atualizar(id, nome, especialidade, conselho, email, senha)
+            View.profissional_atualizar(id, nome, especialidade, conselho, email, senha, bio)
             st.success("Profissional atualizado com sucesso")
             time.sleep(2)
             st.rerun()
@@ -79,7 +82,7 @@ class ManterProfissionalUI:
     if len(profissionais) == 0:
       st.write("Nenhum profissional cadastrado") 
     else:
-      op = st.selectbox("Exclusão de Profissionais", profissionais, format_func=lambda x: x.get_nome()) # Corrigido
+      op = st.selectbox("Exclusão de Profissionais", profissionais, format_func=lambda x: x.get_nome())
       if st.button("Excluir"):
         id = op.get_id()
         View.profissional_excluir(id)

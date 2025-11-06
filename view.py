@@ -112,18 +112,18 @@ class View:
   def profissional_listar_id(id):
     return ProfissionalDAO.listar_id(id)
     
-  def profissional_inserir(nome, especialidade, conselho, email, senha):
+  def profissional_inserir(nome, especialidade, conselho, email, senha, bio):
     if email == "admin":
         raise Exception("E-mail 'admin' é reservado.")
 
     for p in View.profissional_listar() + View.cliente_listar():
         if p.get_email() == email:
             raise Exception("Já existe um usuário com este e-mail.")
-    c = Profissional(0, nome, especialidade, conselho, email, senha)
+    c = Profissional(0, nome, especialidade, conselho, email, senha, bio)
     ProfissionalDAO.inserir(c)
     
-  def profissional_atualizar(id, nome, especialidade, conselho, email, senha):
-    c = Profissional(id, nome, especialidade, conselho, email, senha)
+  def profissional_atualizar(id, nome, especialidade, conselho, email, senha, bio):
+    c = Profissional(id, nome, especialidade, conselho, email, senha, bio)
     ProfissionalDAO.atualizar(c)
     
   def profissional_excluir(id):
