@@ -11,6 +11,7 @@ from perfilprofissionalUI import PerfilProfissionalUI
 from abriragendaUI import AbrirAgendaUI
 from minhaagendaUI import MinhaAgendaUI
 from confirmarservicoUI import ConfirmarServicoUI
+from profissionais import exibir_profissionais
 from view import View
 import streamlit as st
 
@@ -22,9 +23,10 @@ class IndexUI:
         if op == "Abrir Conta": AbrirContaUI.main()
 
     def menu_cliente():
-        op = st.sidebar.selectbox("Menu", ["Meus Dados", "Meus Serviços"])
+        op = st.sidebar.selectbox("Menu", ["Meus Dados", "Meus Serviços", "Profissionais"])
         if op == "Meus Dados": PerfilClienteUI.main()
         if op == "Meus Serviços": MeusservicosUI.main()
+        if op == "Profissionais": exibir_profissionais.main()
 
     def menu_profissional():
         op = st.sidebar.selectbox("Menu", ["Meus Dados", "Abrir Minha Agenda", "Ver Minha Agenda", "Confirmar Serviço"])

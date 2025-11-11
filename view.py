@@ -132,3 +132,17 @@ class View:
             raise Exception("Profissional possui horários cadastrados. Não pode ser excluído.")
     c = Profissional(id, "", "", "", "", "")
     ProfissionalDAO.excluir(c)
+
+  def mostrar_lista_profissionais(self, profissionais):
+    print("\n===== PROFISSIONAIS DISPONÍVEIS =====")
+    for i, p in enumerate(profissionais):
+        print(f"{i + 1}. {p.get_nome()} - {p.get_area()}")
+    print("0. Voltar para o menu do cliente")
+
+def mostrar_perfil_profissional(self, profissional):
+    print("\n===== PERFIL DO PROFISSIONAL =====")
+    print(f"Nome: {profissional.get_nome()}")
+    print(f"Área: {profissional.get_area()}")
+    print("\nBiografia:")
+    print(profissional.get_bio())
+    print("===================================\n")
